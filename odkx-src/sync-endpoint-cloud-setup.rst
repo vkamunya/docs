@@ -563,7 +563,6 @@ Connecting to your virtual machine
 
 8. Read our section on *Creating a Sample User* to learn how to create a user from within the admin interface. This section can be found :ref:`here <sync-endpoint-setup-create-user>`.
 
-|
 
 9. After going through the instructions for *Creating a Sample User,* we no longer need access to this admin interface anymore. This admin interface is running on port 40000, and in order to ensure that this admin interface is not publicly accessible to anyone, we want to remove the rule that accepts incoming traffic to that port. We do this the same way we added the rules above.
 
@@ -574,19 +573,24 @@ Launching the ODK-X Server
 
 1. Navigate to http://[IP_ADDRESS]/web-ui/login in order to access the login screen.
 
-  .. image:: /img/setup-azure/azure11.png
+![azure12](https://user-images.githubusercontent.com/62050248/160944029-10f843ca-00de-4e5f-9d30-540ef30ed72d.png)
    :width: 600
 
 .. note::
-    If you are unable to log in, you may need to take the docker stack down and bring it back up again. That can be done with the following commands below:
+    If you are unable to log in, you may need to docker stack down and bring it back up again. That can be done with the following commands below:
+    
+Take the stack/swarm down
+----------------------------------------------
 
 .. code-block:: console
 
     $ docker stack rm syncldap
+    
+Bring the stack/swarm up with HTTPS support execute this command in the sync-endpoint-default-setup folder:
 
 .. code-block:: console
 
-    $ docker stack deploy -c /root/sync-endpoint-default-setup/docker-compose.yml syncldap
+    $ docker stack deploy -c docker-compose.yml -c docker-compose-https.yml syncldap
 
 .. _sync-anonymous-cloud:
 
